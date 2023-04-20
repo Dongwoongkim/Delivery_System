@@ -14,8 +14,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemServiceImp implements ItemService {
-
     private final ItemRepository itemRepository;
     private final ItemQueryRepository queryRepository;
     private final EntityManager em;
@@ -27,23 +27,25 @@ public class ItemServiceImp implements ItemService {
     }
 
     @Override
-    public void update(Long itemId, ItemUpdateDto updateParam)
+    public void update(Long itemId, ItemUpdateDto itemUpdateDto)
     {
         Item item = itemRepository.findById(itemId).orElseThrow();
-        item.setItemName(updateParam.getItemName());
-        item.setPrice(updateParam.getPrice());
-        item.setQuantity(updateParam.getQuantity());
+        item.setItemName(itemUpdateDto.getItemName());
+        item.setPrice(itemUpdateDto.getPrice());
+        item.setQuantity(itemUpdateDto.getQuantity());
     }
 
     @Override
     public Optional<Item> findById(Long id) {
-        return Optional.empty();
+        Optional<Item> findItem = itemRepository.findById(id);
+        return findItem;
     }
 
+
+    // 동적 쿼리
     @Override
-    public List<Item> findItems(ItemSearchCond cond)
-    {
-        return new ArrayList<>();
+    public List<Item> findItems(ItemSearchCond cond){
+        return queryRepository.findItems(cond);
     }
 
     public List<Item> findAll()
@@ -51,7 +53,6 @@ public class ItemServiceImp implements ItemService {
         return itemRepository.findAll();
     }
 
-    @Transactional
     public void deleteAll()
     {
         em.createNativeQuery("TRUNCATE TABLE item restart identity").executeUpdate();

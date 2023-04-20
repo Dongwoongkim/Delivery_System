@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface ItemService {
     public Item save(Item item);
 
-    public void update(Long itemId, ItemUpdateDto updateParam);
+    public void update(Long itemId, ItemUpdateDto itemUpdateDto);
 
     public Optional<Item> findById(Long id);
 

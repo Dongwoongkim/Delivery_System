@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Data
 public class ItemSearchCond {
+
     private String itemName;
     private Integer maxPrice;
 

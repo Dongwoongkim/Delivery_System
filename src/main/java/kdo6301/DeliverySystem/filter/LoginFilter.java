@@ -24,7 +24,6 @@ public class LoginFilter implements Filter {
 
         try
         {
-            log.info("인증 체크 필터 시작 {}", requestURI);
             if(isLoginCheckPath(requestURI))
             {
                 HttpSession session = httpRequest.getSession(false);
@@ -39,11 +38,10 @@ public class LoginFilter implements Filter {
         } catch (IOException e) {
             throw e;
         }finally {
-            log.info("인증 체크 필터 종료 {}", requestURI);
         }
     }
 
     private boolean isLoginCheckPath(String requestURI) {
-        return !PatternMatchUtils.simpleMatch(whiteList,requestURI);
+        return !PatternMatchUtils.simpleMatch(whiteList, requestURI);
     }
 }
