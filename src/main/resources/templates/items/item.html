@@ -23,28 +23,28 @@
     <label for="itemId" th:text="#{label.item.id}">상품 ID</label>
     <input type="text" id="itemId" name="itemId" class="form-control"
            value="1"
-           th:value="${item.id}"
+           th:value="${itemResponseDTO.id}"
            readonly>
   </div>
 
   <div>
     <label for="itemName" th:text="#{label.item.itemName}">상품명</label>
     <input type="text" id="itemName" name="itemName" class="form-control"
-           th:value="${item.itemName}"
+           th:value="${itemResponseDTO.itemName}"
            value="상품A" readonly>
   </div>
 
   <div>
     <label for="price"  th:text="#{label.item.price}">가격</label>
     <input type="text" id="price" name="price" class="form-control"
-           th:value="${item.price}"
+           th:value="${itemResponseDTO.price}"
            value="10000" readonly>
   </div>
 
   <div>
     <label for="quantity" th:text="#{label.item.quantity}">수량</label>
     <input type="text" id="quantity" name="quantity" class="form-control"
-           th:value="${item.quantity}"
+           th:value="${itemResponseDTO.quantity}"
            value="10" readonly>
   </div>
 
@@ -52,7 +52,7 @@
   <div class="row">
     <div class="col">
       <button class="w-100 btn btn-primary btn-lg"
-              th:onclick="|location.href='@{/items/{itemId}/edit(itemId=${item.getId()})}'|"
+              th:onclick="|location.href='@{/items/{itemId}/edit(itemId=${itemResponseDTO.getId()})}'|"
               onclick="location.href='editForm.html'" type="button">상품 수정</button>
     </div>
     <div class="col">

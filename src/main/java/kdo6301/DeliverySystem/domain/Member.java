@@ -1,40 +1,46 @@
 package kdo6301.DeliverySystem.domain;
 
-
-import kdo6301.DeliverySystem.repository.MemberRepository;
+import kdo6301.DeliverySystem.dto.member.MemberDTO;
+import kdo6301.DeliverySystem.dto.member.MemberSignInDTO;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Data
+@ToString
 @Entity
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="member_id")
     private Long id;
-
-    @NotEmpty
-    @Column(name="login_id")
-    private String loginId;
-    @NotEmpty
+    private String loginName;
     private String name;
 
-    @NotEmpty
     private String password;
+
+    @OneToMany
+    private List<Order> orders;
 
     public Member(){}
 
-    public Member(String loginId, String name, String password) {
-        this.loginId = loginId;
+    public Member(String loginName, String name, String password) {
+        this.loginName = loginName;
         this.name = name;
         this.password = password;
     }
 
-    public static boolean validateLogin(Member member, String password)
+    public boolean validateLogin(String password)
     {
-        return member.getPassword().equals(password);
+        return this.password.equals(password);
+    }
+
+    public static Member toMember(MemberDTO memberDTO){
+        return new Member(
+                memberDTO.getName(),
+                memberDTO.getLoginName(),
+                memberDTO.getPassword());
     }
 }

@@ -1,22 +1,26 @@
 package kdo6301.DeliverySystem.service;
 
 import kdo6301.DeliverySystem.domain.Member;
-import kdo6301.DeliverySystem.repository.MemberRepository;
+import kdo6301.DeliverySystem.dto.member.MemberDTO;
+import kdo6301.DeliverySystem.dto.member.MemberSignInDTO;
+import kdo6301.DeliverySystem.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LoginService {
     private final MemberRepository memberRepository;
 
-    public Member login(String loginId, String password) {
-        Member member = memberRepository.findByLoginId(loginId);
+    public MemberDTO login(String loginName, String password) {
+        Member member = memberRepository.findByLoginName(loginName);
 
-        if(Member.validateLogin(member,password))
-        {
-            return member;
+        if(member!=null) {
+            if(member.validateLogin(password)) {
+                return MemberDTO.toDTO(member);
+            }
         }
         return null;
     }

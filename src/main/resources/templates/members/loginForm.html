@@ -18,15 +18,15 @@
 <div class="container">
     <div class="py-5 text-center">
         <h2>로그인</h2> </div>
-    <form action="item.html" th:action th:object="${loginForm}" method="post">
+    <form action="item.html" th:action th:object="${memberLogInDTO}" method="post">
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
                th:text="${err}">전체 오류 메시지</p> </div>
         <div>
-            <label for="loginId">로그인 ID</label>
-            <input type="text" id="loginId" th:field="*{loginId}"
+            <label for="loginName">로그인 ID</label>
+            <input type="text" id="loginName" th:field="*{loginName}"
                    class="form-control"  th:errorclass="field-error">
-            <div class="field-error" th:errors="*{loginId}" />
+            <div class="field-error" th:errors="*{loginName}" />
         </div>
 
         <div>

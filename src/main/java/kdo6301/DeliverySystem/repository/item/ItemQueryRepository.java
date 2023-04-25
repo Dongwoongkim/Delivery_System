@@ -4,13 +4,11 @@ package kdo6301.DeliverySystem.repository.item;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kdo6301.DeliverySystem.domain.Item;
-import kdo6301.DeliverySystem.service.item.ItemSearchCond;
+import kdo6301.DeliverySystem.dto.item.ItemSearchDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static kdo6301.DeliverySystem.domain.QItem.item;
@@ -20,7 +18,7 @@ import static kdo6301.DeliverySystem.domain.QItem.item;
 public class ItemQueryRepository {
     private final JPAQueryFactory query;
 
-    public List<Item> findItems(ItemSearchCond cond)
+    public List<Item> findItems(ItemSearchDTO cond)
     {
         String itemName = cond.getItemName();
         Integer maxPrice = cond.getMaxPrice();

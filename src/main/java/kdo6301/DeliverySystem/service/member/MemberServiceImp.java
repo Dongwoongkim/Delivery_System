@@ -1,13 +1,12 @@
 package kdo6301.DeliverySystem.service.member;
 
 import kdo6301.DeliverySystem.domain.Member;
-import kdo6301.DeliverySystem.repository.MemberRepository;
+import kdo6301.DeliverySystem.dto.member.MemberDTO;
+import kdo6301.DeliverySystem.dto.member.MemberSignInDTO;
+import kdo6301.DeliverySystem.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -15,19 +14,18 @@ import java.util.Optional;
 public class MemberServiceImp implements MemberService{
     private final MemberRepository memberRepository;
     @Override
-    public Member save(Member member) {
-        return memberRepository.save(member);
+    public void save(MemberSignInDTO memberSignInDTO) {
+
+        memberRepository.save(new Member(
+                        memberSignInDTO.getLoginName(),
+                        memberSignInDTO.getName(),
+                        memberSignInDTO.getPassword()));
     }
-
-    public boolean DuplicateId(Member member)
-    {
-        log.info("member login id = {}", member.getLoginId());
-        Member findMember = memberRepository.findByLoginId(member.getLoginId());
-
+    public boolean DuplicateId(MemberSignInDTO memberSignInDTO) {
+        Member findMember = memberRepository.findByLoginName(memberSignInDTO.getLoginName());
         if (findMember == null) {
             return false;
         }
-
         return true;
     }
 }

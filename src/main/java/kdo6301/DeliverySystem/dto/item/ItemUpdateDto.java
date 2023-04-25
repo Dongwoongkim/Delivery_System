@@ -1,4 +1,4 @@
-package kdo6301.DeliverySystem.service.item;
+package kdo6301.DeliverySystem.dto.item;
 
 import lombok.Data;
 
@@ -12,17 +12,18 @@ import javax.validation.constraints.NotNull;
 @Data
 public class ItemUpdateDto {
 
+    private Long id;
     @NotEmpty
     private String itemName;
     @NotNull
     private Integer price;
-
     @NotNull
     private Integer quantity;
 
     public ItemUpdateDto() {}
 
-    public ItemUpdateDto(String itemName, Integer price, Integer quantity) {
+    public ItemUpdateDto(Long id, String itemName, Integer price, Integer quantity) {
+        this.id = id;
         this.itemName = itemName;
         this.price = price;
         this.quantity = quantity;

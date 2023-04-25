@@ -1,8 +1,6 @@
 package kdo6301.DeliverySystem.service.member;
-
-import kdo6301.DeliverySystem.domain.Member;
+import kdo6301.DeliverySystem.dto.member.MemberSignInDTO;
 
 public interface MemberService {
-    public Member save(Member member);
-
+    public void save(MemberSignInDTO memberSignInDTO);
 }
