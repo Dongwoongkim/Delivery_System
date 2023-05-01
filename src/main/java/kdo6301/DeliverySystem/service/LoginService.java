@@ -19,7 +19,7 @@ public class LoginService {
 
         if(member!=null) {
             if(member.validateLogin(password)) {
-                return MemberDTO.toDTO(member);
+                return member.toDto();
             }
         }
         return null;

@@ -11,6 +11,8 @@ public class MemberLogInDTO {
     @NotEmpty
     private String loginName;
 
+    private String name;
+
     @NotEmpty
     private String password;
 

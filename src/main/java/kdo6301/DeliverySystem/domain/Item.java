@@ -12,7 +12,7 @@ import java.util.List;
 public class Item {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="item_id")
+    @Column(name="ITEM_ID")
     private Long id;
     private String itemName;
 
@@ -20,8 +20,8 @@ public class Item {
 
     private Integer quantity;
 
-    @OneToMany
-    private List<Order> orders;
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems;
 
     public Item() {
     }

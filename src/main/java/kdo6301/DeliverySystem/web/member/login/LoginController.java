@@ -43,7 +43,7 @@ public class LoginController {
         // 성공
         // 세션이 있으면 있는 세션 리턴, 없으면 신규 세션 생성
         HttpSession session = request.getSession();
-        session.setAttribute("loginMember", Member.toMember(memberDTO));
+        session.setAttribute("loginMember", memberDTO);
         return "redirect:" + redirectURL;
     }
 

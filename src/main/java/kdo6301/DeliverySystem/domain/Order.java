@@ -6,7 +6,8 @@ import javax.persistence.*;
 public class Order {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    @Column(name = "ORDER_ID")
+    private Long id;
 
     private String state;
 
@@ -14,15 +15,6 @@ public class Order {
     @JoinColumn(name="member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name="item_id")
-    private Item item;
-
     public Order(){}
 
-    public Order(String state, Member member, Item item) {
-        this.state = state;
-        this.member = member;
-        this.item = item;
-    }
 }

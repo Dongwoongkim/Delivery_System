@@ -8,20 +8,18 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
-@ToString
 @Entity
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="member_id")
+    @Column(name="MEMBER_ID")
     private Long id;
     private String loginName;
     private String name;
 
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "member")
     private List<Order> orders;
 
     public Member(){}
@@ -37,10 +35,7 @@ public class Member {
         return this.password.equals(password);
     }
 
-    public static Member toMember(MemberDTO memberDTO){
-        return new Member(
-                memberDTO.getName(),
-                memberDTO.getLoginName(),
-                memberDTO.getPassword());
+    public MemberDTO toDto(){
+        return new MemberDTO(this.loginName,this.name,this.password);
     }
 }

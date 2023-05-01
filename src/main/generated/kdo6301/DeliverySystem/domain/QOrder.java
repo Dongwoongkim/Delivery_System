@@ -22,11 +22,9 @@ public class QOrder extends EntityPathBase<Order> {
 
     public static final QOrder order = new QOrder("order1");
 
-    public final QItem item;
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final QMember member;
-
-    public final NumberPath<Long> orderId = createNumber("orderId", Long.class);
 
     public final StringPath state = createString("state");
 
@@ -48,7 +46,6 @@ public class QOrder extends EntityPathBase<Order> {
 
     public QOrder(Class<? extends Order> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.item = inits.isInitialized("item") ? new QItem(forProperty("item")) : null;
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
     }
 

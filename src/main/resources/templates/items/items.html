@@ -9,6 +9,14 @@
 
 <div class="container" style="max-width: 1000px">
     <div class="py-5 text-center">
+
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='index.html'"
+                    th:onclick="|location.href='@{/}'|"
+                    type="button" th:text="#{page.first}">초기 화면</button>
+        </div>
+
         <h2 th:text="#{page.items}">상품 목록</h2>
     </div>
 
@@ -29,8 +37,8 @@
         <div class="col">
             <button class="btn btn-primary float-end"
                     onclick="location.href='addForm.html'"
-                    th:onclick="|location.href='@{/items/delete}'|"
-                    type="button" th:text="#{page.delete}">상품 삭제</button>
+                    th:onclick="|location.href='@{/items/order}'|"
+                    type="button" th:text="#{page.order}">상품 삭제</button>
         </div>
 
         <div class="col">

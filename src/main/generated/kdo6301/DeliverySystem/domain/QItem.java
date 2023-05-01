@@ -24,7 +24,7 @@ public class QItem extends EntityPathBase<Item> {
 
     public final StringPath itemName = createString("itemName");
 
-    public final ListPath<Order, QOrder> orders = this.<Order, QOrder>createList("orders", Order.class, QOrder.class, PathInits.DIRECT2);
+    public final ListPath<OrderItem, QOrderItem> orderItems = this.<OrderItem, QOrderItem>createList("orderItems", OrderItem.class, QOrderItem.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> price = createNumber("price", Integer.class);
 

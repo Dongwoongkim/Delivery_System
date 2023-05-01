@@ -21,10 +21,10 @@ public class MemberDTO {
         this.password = password;
     }
 
-    public static MemberDTO toDTO(Member member){
-        return new MemberDTO(
-                member.getName(),
-                member.getLoginName(),
-                member.getPassword());
+    public static Member toMember(MemberDTO memberDTO){
+        return new Member(
+                memberDTO.getName(),
+                memberDTO.getLoginName(),
+                memberDTO.getPassword());
     }
 }
